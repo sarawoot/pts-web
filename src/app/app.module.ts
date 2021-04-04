@@ -4,14 +4,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {HomeComponent} from './components/home/home.component';
+import {authInterceptorProviders} from './helpers/auth.interceptor';
+import {errorInterceptorProviders} from './helpers/error.interceptor';
 import {SharedModule} from './shared/shared.module';
-import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports:
       [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule],
-  providers: [],
+  providers: [authInterceptorProviders, errorInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {
