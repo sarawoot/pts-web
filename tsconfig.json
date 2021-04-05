@@ -3,18 +3,18 @@
   It is not intended to be used to perform a compilation.
 
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
+  {
+    "path": "./src/tsconfig.spec.json"
+  },
+  {
+    "path": "./e2e/tsconfig.e2e.json"
+  }
 */
 {
   "files": [],
   "references": [
     {
       "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./src/tsconfig.spec.json"
-    },
-    {
-      "path": "./e2e/tsconfig.e2e.json"
     }
   ]
 }

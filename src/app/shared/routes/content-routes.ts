@@ -1,20 +1,26 @@
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
-import {HomeComponent} from '../../components/home/home.component';
+import { HomeComponent } from '../../components/home/home.component';
 
 
 export const content: Routes = [
   {
     path: environment.homePath.replace('/', ''),
     component: HomeComponent,
-    data: {title: 'หน้าแรก'}
+    data: { title: 'หน้าแรก' }
   },
   {
     path: 'sample',
     loadChildren: () => import('../../components/sample/sample.module')
-                            .then(m => m.SampleModule),
-    data: {breadcrumb: 'Sample'}
+      .then(m => m.SampleModule),
+    data: { breadcrumb: 'Sample' }
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('../../components/user/user.module')
+      .then(m => m.UserModule),
+    data: { breadcrumb: 'Sample' }
   }
 ];
