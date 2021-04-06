@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -19,11 +18,7 @@ export class LoginComponent implements OnInit {
   isLoginFail = false;
   errorMessage = '';
 
-  constructor(
-    public formBuilder: FormBuilder,
-    private authenService: AuthenService,
-    private tokenStorage: TokenStorageService
-  ) {
+  constructor(public formBuilder: FormBuilder, private authenService: AuthenService, private tokenStorage: TokenStorageService) {
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: [''],
@@ -32,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(): any {
+  onSubmit(): void {
     this.authenService.login(this.loginForm.value).subscribe(
       (res: any) => {
         const token = res.token;

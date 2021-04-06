@@ -1,34 +1,38 @@
-
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavService, Menu } from '../../services/nav.service';
+import { TokenStorageService } from '../../../services/token-storage.service';
+import { environment } from '../../../../environments/environment';
 
-var body = document.getElementsByTagName("body")[0];
+const body = document.getElementsByTagName('body')[0];
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   public menuItems: Menu[];
   public items: Menu[];
-  public openNav: boolean = false
-  public right_sidebar: boolean = false
-  public text: string
+  public openNav = false;
+  public rightSidebar = false;
+  public text: string;
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
-  constructor(public navServices: NavService) {  }
+  constructor(public navServices: NavService, private tokenService: TokenStorageService) {}
 
-  ngOnInit() {
-    this.navServices.items.subscribe(menuItems => {
-      this.items = menuItems
+  ngOnInit(): void {
+    this.navServices.items.subscribe((menuItems) => {
+      this.items = menuItems;
     });
   }
 
-  collapseSidebar() {
-    this.navServices.collapseSidebar = !this.navServices.collapseSidebar
+  collapseSidebar(): void {
+    this.navServices.collapseSidebar = !this.navServices.collapseSidebar;
   }
 
+  logout(): void {
+    this.tokenService.clear();
+    window.location.pathname = environment.loginPath;
+  }
 }

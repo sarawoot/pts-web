@@ -9,6 +9,7 @@ export const environment = {
   roles: ['admi', 'staf', 'pho', 'hr', 'fin'],
   homePath: '/home',
   loginPath: '/login',
+  userPath: '/users',
   api: {
     baseURL: `${apiURL}`,
     userURL: `${apiURL}/users`,

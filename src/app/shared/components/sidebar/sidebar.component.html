@@ -45,7 +45,8 @@
         <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
       </a>
       <!-- 2nd Level Menu -->
-      <ul class="sidebar-submenu" [ngClass]="{'menu-open': menuItem.active, 'menu-close': !menuItem.active }" *ngIf="menuItem.children">
+      <ul class="sidebar-submenu" [ngClass]="{'menu-open': menuItem.active, 'menu-close': !menuItem.active }"
+        *ngIf="menuItem.children">
         <li *ngFor="let childrenItem of menuItem.children" [ngClass]="{active: childrenItem.active}">
           <!-- Sub -->
           <a href="javascript:void(0)" *ngIf="childrenItem.type === 'sub'" (click)="toggletNavActive(childrenItem)">

@@ -3,24 +3,20 @@ import { Routes } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
 import { HomeComponent } from '../../components/home/home.component';
-
+import { AuthGuard } from '../guard/auth.guard';
 
 export const content: Routes = [
   {
     path: environment.homePath.replace('/', ''),
+    canActivate: [AuthGuard],
     component: HomeComponent,
-    data: { title: 'หน้าแรก' }
+    data: { title: 'หน้าแรก', breadcrumb: 'หน้าแรก' },
+    pathMatch: 'full',
   },
   {
-    path: 'sample',
-    loadChildren: () => import('../../components/sample/sample.module')
-      .then(m => m.SampleModule),
-    data: { breadcrumb: 'Sample' }
+    path: 'users',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('../../components/user/user.module').then((m) => m.UserModule),
+    data: { title: 'ผู้ใช้งาน' },
   },
-  {
-    path: 'user',
-    loadChildren: () => import('../../components/user/user.module')
-      .then(m => m.UserModule),
-    data: { breadcrumb: 'Sample' }
-  }
 ];

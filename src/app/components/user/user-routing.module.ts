@@ -1,28 +1,28 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { UserListComponent } from "./user-list/user-list.component";
-import { UserNewComponent } from "./user-new/user-new.component";
-import { UserEditComponent } from "./user-edit/user-edit.component";
+import { UserListComponent } from './user-list/user-list.component';
+import { UserNewComponent } from './user-new/user-new.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {
-    path: "users",
+    path: '',
     children: [
       {
-        path: "",
+        path: '',
         component: UserListComponent,
-        data: { title: "sample-component", breadcrumb: "sample-component" },
+        data: { breadcrumb: 'รายการผู้ใช้งาน' },
       },
       {
-        path: "new",
+        path: 'new',
         component: UserNewComponent,
-        data: { title: "sample-component", breadcrumb: "sample-component" },
+        data: { breadcrumb: 'เพิ่มผู้ใช้งาน' },
       },
       {
-        path: "/:id/edit",
+        path: ':id/edit',
         component: UserEditComponent,
-        data: { title: "sample-component", breadcrumb: "sample-component" },
+        data: { breadcrumb: 'แก้ไข้ผู้ใช้งาน' },
       },
     ],
   },

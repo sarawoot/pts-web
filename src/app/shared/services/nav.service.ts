@@ -1,5 +1,6 @@
-import {HostListener, Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subscriber} from 'rxjs';
+import { Injectable, HostListener } from '@angular/core';
+import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 // Menu
 export interface Menu {
@@ -20,6 +21,7 @@ export interface Menu {
 export class NavService {
   public screenWidth: any;
   public collapseSidebar = false;
+  public fullScreen = false;
 
   constructor() {
     this.onResize();
@@ -27,12 +29,15 @@ export class NavService {
       this.collapseSidebar = true;
     }
   }
-
-  MENUITEMS: Menu[] = [];
-  items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
-
   // Windows width
   @HostListener('window:resize', ['$event'])
+  MENUITEMS: Menu[] = [
+    { title: 'หน้าแรก', icon: 'home', path: environment.homePath, type: 'link', active: false },
+    { title: 'ผู้ใช้งาน', icon: 'users', path: environment.userPath, type: 'link', active: false },
+  ];
+  // Array
+  items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
+
   onResize(event?: any): void {
     this.screenWidth = window.innerWidth;
   }

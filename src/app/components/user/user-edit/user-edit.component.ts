@@ -44,13 +44,13 @@ export class UserEditComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onUpdate(): any {
     this.userService.updateUser(this.id, this.userForm.value).subscribe(
       () => {
         this.ngZone.run(() => {
-          this.router.navigateByUrl('/users');
+          this.router.navigateByUrl(environment.userPath);
         });
       },
       (err) => {

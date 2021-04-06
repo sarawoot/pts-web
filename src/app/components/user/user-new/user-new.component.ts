@@ -13,12 +13,7 @@ export class UserNewComponent implements OnInit {
   roles: string[] = environment.roles;
   userForm: FormGroup;
 
-  constructor(
-    public formBuilder: FormBuilder,
-    private router: Router,
-    private ngZone: NgZone,
-    private userService: UserService
-  ) {
+  constructor(public formBuilder: FormBuilder, private router: Router, private ngZone: NgZone, private userService: UserService) {
     this.userForm = this.formBuilder.group({
       email: [''],
       password: [''],
@@ -30,12 +25,12 @@ export class UserNewComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onSubmit(): any {
     this.userService.createUser(this.userForm.value).subscribe(
       () => {
-        this.ngZone.run(() => this.router.navigateByUrl('/users'));
+        this.ngZone.run(() => this.router.navigateByUrl(environment.userPath));
       },
       (err) => {
         console.log(err);
