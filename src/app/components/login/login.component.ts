@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import jwt_decode from 'jwt-decode';
-
 import { environment } from 'src/environments/environment';
-
 import { AuthenService } from '../../services/authen.service';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +16,15 @@ export class LoginComponent implements OnInit {
   isLoginFail = false;
   errorMessage = '';
 
-  constructor(public formBuilder: FormBuilder, private authenService: AuthenService, private tokenStorage: TokenStorageService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public toster: ToastrService,
+    private authenService: AuthenService,
+    private tokenStorage: TokenStorageService
+  ) {
     this.loginForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
 
@@ -38,7 +41,7 @@ export class LoginComponent implements OnInit {
       },
       (err) => {
         this.isLoginFail = true;
-        this.errorMessage = 'อีเมลหรือรหัสผ่านไม่ถูกต้อง';
+        this.toster.error('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
         console.log(err);
       }
     );

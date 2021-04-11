@@ -6,7 +6,7 @@ const apiURL = 'http://127.0.0.1:3000/api';
 
 export const environment = {
   production: false,
-  roles: ['admi', 'staf', 'pho', 'hr', 'fin'],
+  roles: ['admin', 'staff', 'pho', 'hr', 'fin'],
   homePath: '/home',
   loginPath: '/login',
   userPath: '/users',
